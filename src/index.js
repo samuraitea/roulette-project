@@ -4,6 +4,16 @@ import $ from 'jquery';
 // import sort from 'jquery-ui/ui/widgets/sortable';
 import { rand } from './app/helpers';
 
+
+/******************** ROTATION ROULETTE ********************/
+
+$('button').on('click', function() {
+    $('.wheel').css({
+        "transition": "transform 3s",
+        "transform": "rotate(2080deg)"
+    })
+});
+
 /******************** JETON ********************/
 
 $('.case').on('click', function () {

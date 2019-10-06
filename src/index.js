@@ -4,37 +4,46 @@ import $ from 'jquery';
 // import sort from 'jquery-ui/ui/widgets/sortable';
 import { rand } from './app/helpers';
 
-// let bet = prompt('Place your bets.');
 
-
+// PARI
+let bet = prompt('Place your bets.');
+parseInt($('.money').text((100 - bet) + "e"));
 /******************** JETONS ********************/
+const jetonDiv = '<div class="jeton"><img src="assets/images/token.png" alt="picture of token"></div>';
+
 $('.case').on('click', function () {
-    $(this).append('<div class="jeton"><img src="assets/images/token.png" alt="picture of token"></div>');
+    $(this).append(jetonDiv);
+    $(this).addClass('caseJeton');
 });
 
 $('#turn').on('click', function() {
         const randomNb = rand(0, 36);
-        const caseTxt = $('.case').text();
-        
-        console.log(caseTxt);
-        console.log(randomNb);
 
-        $('.random').text(randomNb);
-        
-    });
+        spinRoulette();
+        $('.random').text(randomNb); 
+
+        for(let i=0; ++i<=36;){
+            // Si on tombe sur une case normale
+            if(parseInt($(`#${i}`).text()) === randomNb && $(`#${i}`).hasClass('caseJeton')){
+                console.log('Bravo! Vous recevez 2 fois votre pari.');
+                parseInt($('.money').text((100 +(2 * bet)) + "e"));
+            } // Si on tombe sur la case 0
+            else if (randomNb === 0){
+            console.log('0! Bravo! Vous recevez 36 fois votre pari.');
+            parseInt($('.money').text((100 + (36 * bet)) + "e"));
+        } 
+    }
+});
 
 // JETONS REMOVE
     $('#turn').on('click', function () {
         $('.jeton').remove();
+        $('.case').removeClass('caseJeton');
     });
     
 
 
 /******************** ROULETTE ********************/
-    $('#turn').on('click', function() {
-        spinRoulette();
-    });
-
 // ROTATION ROULETTE
 let degree = 0;
 function spinRoulette() {
@@ -44,8 +53,6 @@ function spinRoulette() {
     })
     degree += 2080;
 };
-
-
 
     // console.log(randomNb);
     // console.log($(".case").find('.jeton').length);

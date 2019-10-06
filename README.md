@@ -1,4 +1,3 @@
 # Roulette Project
 
-Ma roulette, tu vas faire quoi hein
-Hello
+Ma roulette - Progression: 35%

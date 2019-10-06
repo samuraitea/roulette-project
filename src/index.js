@@ -4,37 +4,38 @@ import $ from 'jquery';
 // import sort from 'jquery-ui/ui/widgets/sortable';
 import { rand } from './app/helpers';
 
+// let bet = prompt('Place your bets.');
 
-/******************** ROTATION ROULETTE ********************/
 
-// $('button').on('click', function() {
-//     $('.wheel').css({
-//         "transition": "transform 3s",
-//         "transform": "rotate(2080deg)"
-//     })
-// });
-
-/******************** JETON ********************/
-
+/******************** JETONS ********************/
 $('.case').on('click', function () {
-    $(this).append('<div class="jeton">1€</div>');
-    
-    $('button').on('click', function () {
-    $('.jeton').remove();
-});
+    $(this).append('<div class="jeton"><img src="assets/images/token.png" alt="picture of token"></div>');
 });
 
-/******************** NOMBRE ALEATOIRE ********************/
-
-$(document).ready(function() {
-    $('button').on('click', function() {
-        spinRoulette();
-        
+$('#turn').on('click', function() {
         const randomNb = rand(0, 36);
-        $('.random').text(randomNb);
-    })
-});
+        const caseTxt = $('.case').text();
+        
+        console.log(caseTxt);
+        console.log(randomNb);
 
+        $('.random').text(randomNb);
+        
+    });
+
+// JETONS REMOVE
+    $('#turn').on('click', function () {
+        $('.jeton').remove();
+    });
+    
+
+
+/******************** ROULETTE ********************/
+    $('#turn').on('click', function() {
+        spinRoulette();
+    });
+
+// ROTATION ROULETTE
 let degree = 0;
 function spinRoulette() {
      $('.wheel').css({
@@ -42,10 +43,11 @@ function spinRoulette() {
         "transform": "rotate(" + degree + "deg)"
     })
     degree += 2080;
-}
+};
 
 
 
     // console.log(randomNb);
     // console.log($(".case").find('.jeton').length);
+
 

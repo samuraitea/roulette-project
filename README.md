@@ -1,3 +1,3 @@
 # Roulette Project
 
-Ma roulette - Progression: 35%
+Roulette Project with JavaScript - Progression: 35%
